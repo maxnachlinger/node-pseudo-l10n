@@ -16,7 +16,7 @@
 	},
 	"main": "index.js",
 	"scripts": {
-		"test": "node tests/*.js"
+		"test": "tape tests/*.js"
 	},
 	"author": {
 		"name": "Max Nachlinger",
