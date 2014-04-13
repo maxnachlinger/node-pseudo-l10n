@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: node-pseudo-i18n\n"
+"Language-Team: Max Nachlinger <max@somewhre.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2014-04-11 20:41+0000\n"
+
+#: Single string %s place-holder.
+msgid "Single string %s place-holder."
+msgstr ""
+
+#: Two %s string %s place-holders.
+msgid "A test message"
+msgstr ""
+
+#: This ends with a string place-holder %s
+msgid "This ends with a string place-holder %s"
+msgstr ""
+
+#: This ends with two string place-holders %s%s
+msgid "This ends with two string place-holders %s%s"
+msgstr ""
+
+#: Positional string %1$s place-holder.
+msgid "Positional string %1$s place-holder."
+msgstr ""
+
+#: Two positional %2$s string %1$s place-holders.
+msgid "Two positional %2$s string %1$s place-holders."
+msgstr ""
+
+#: Float %.2f place-holder.
+msgid "Float %.2f place-holder."
+msgstr ""
+
+#: Plural text
+msgid "You have <b>%d day</b> left."
+msgid_plural "You have <b>%d days</b> left."
+msgstr[0] ""
+msgstr[1] ""

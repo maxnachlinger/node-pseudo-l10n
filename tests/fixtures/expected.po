@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: node-pseudo-i18n\n"
+"Language-Team: Max Nachlinger <max@somewhre.com>\n"
+"PO-Revision-Date: 2014-04-11 13:45-0800\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2014-04-11 20:41+0000\n"
+"Last-Translator: Max Nachlinger <max@somewhre.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: test\n"
+
+#: Single string %s place-holder.
+msgid "Single string %s place-holder."
+msgstr "Šîñĝļé šţŕîñĝ %s þļàçé-ĥôļðéŕ."
+
+#: Two %s string %s place-holders.
+msgid "A test message"
+msgstr "À ţéšţ ɱéššàĝé"
+
+#: This ends with a string place-holder %s
+msgid "This ends with a string place-holder %s"
+msgstr "Ţĥîš éñðš ŵîţĥ à šţŕîñĝ þļàçé-ĥôļðéŕ %s"
+
+#: This ends with two string place-holders %s%s
+msgid "This ends with two string place-holders %s%s"
+msgstr "Ţĥîš éñðš ŵîţĥ ţŵô šţŕîñĝ þļàçé-ĥôļðéŕš %s%s"
+
+#: Positional string %1$s place-holder.
+msgid "Positional string %1$s place-holder."
+msgstr "Þôšîţîôñàļ šţŕîñĝ %1$s þļàçé-ĥôļðéŕ."
+
+#: Two positional %2$s string %1$s place-holders.
+msgid "Two positional %2$s string %1$s place-holders."
+msgstr "Ţŵô þôšîţîôñàļ %2$s šţŕîñĝ %1$s þļàçé-ĥôļðéŕš."
+
+#: Float %.2f place-holder.
+msgid "Float %.2f place-holder."
+msgstr "Ƒļôàţ %.2f þļàçé-ĥôļðéŕ."
+
+#: Plural text
+msgid "You have <b>%d day</b> left."
+msgstr[0] "Ýôû ĥàṽé <b>%d ðàý</b> ļéƒţ."
+msgstr[1] "Ýôû ĥàṽé <b>%d ðàýš</b> ļéƒţ."
