@@ -1,0 +1,32 @@
+{
+	"name": "node-pseudo-i18n",
+	"version": "0.0.1",
+	"description": "",
+	"keywords": [
+		"i18n",
+		"pseudo-localization",
+		"internationalization",
+		"localization",
+		"po"
+	],
+	"homepage": "https://github.com/maxnachlinger/node-pseudo-i18n",
+	"repository": {
+		"url": "https://github.com/maxnachlinger/node-pseudo-i18n.git",
+		"type": "git"
+	},
+	"main": "index.js",
+	"scripts": {
+		"test": "node tests/*.js"
+	},
+	"author": {
+		"name": "Max Nachlinger",
+		"url": "https://github.com/maxnachlinger"
+	},
+	"license": "ISC",
+	"dependencies": {
+		"gettext-parser": "^0.2.0"
+	},
+	"devDependencies": {
+		"tape": "^2.12.3"
+	}
+}
