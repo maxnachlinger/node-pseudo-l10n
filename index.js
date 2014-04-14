@@ -38,3 +38,7 @@ module.exports = function (params, cb) {
 
 	cb(null, po);
 };
+
+module.exports.transformString = function(s, charMap) {
+	return pseudoLocalizeString(charMap)(s);
+};

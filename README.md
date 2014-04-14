@@ -14,6 +14,10 @@ npm install node-pseudo-i18n
 var pseudoLoc = require('node-pseudo-i18n');
 var fs = require('fs');
 
+// for a single string
+pseudoLoc.transformString('This ends with a string place-holder %s');
+// returns 'Ţĥîš éñðš ŵîţĥ à šţŕîñĝ þļàçé-ĥôļðéŕ %s'
+
 // for PO files
 pseudoLoc({
     fileContents: fs.readFileSync('someFile.po')
