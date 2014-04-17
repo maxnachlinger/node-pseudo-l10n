@@ -16,7 +16,7 @@ var fs = require('fs');
 
 // for a single string
 pseudoLoc.transformString('This ends with a string place-holder %s');
-// returns 'Ţĥîš éñðš ŵîţĥ à šţŕîñĝ þļàçé-ĥôļðéŕ %s'
+// returns 'Ţĥîîîš éééñðš ŵîîîţĥ ààà šţŕîîîñĝ þļàààçééé-ĥôôôļðéééŕ %s'
 
 // for PO files
 pseudoLoc({
@@ -38,6 +38,6 @@ pseudoLoc({
 It's one of the fastest ways to test if your app can be localized (without going through the pain of full localization). 
 
 ### What's pseudo-localized text look like?
-Here's a some text ``This ends with a string place-holder %s`` pseudo-localized ``Ţĥîš éñðš ŵîţĥ à šţŕîñĝ þļàçé-ĥôļðéŕ %s``.
+Here's a some text ``This ends with a string place-holder %s`` pseudo-localized ``Ţĥîîîš éééñðš ŵîîîţĥ ààà šţŕîîîñĝ þļàààçééé-ĥôôôļðéééŕ %s``.
 
 Copyright (c) 2014 Max Nachlinger
