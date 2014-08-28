@@ -1,9 +1,10 @@
 #node-pseudo-i18n
+Turns a PO or POT file into [pseudo-localized](http://en.wikipedia.org/wiki/Pseudolocalization) PO file.
+
 [![NPM](https://nodei.co/npm/node-pseudo-i18n.png)](https://nodei.co/npm/node-pseudo-i18n/)
 
 [![Build Status](https://travis-ci.org/maxnachlinger/node-pseudo-i18n.png?branch=master)](https://travis-ci.org/maxnachlinger/node-pseudo-i18n)
 
-Turns a PO or POT file into [pseudo-localized](http://en.wikipedia.org/wiki/Pseudolocalization) PO file.
 ### Installation:
 ```
 npm install node-pseudo-i18n
