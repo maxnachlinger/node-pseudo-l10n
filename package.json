@@ -1,6 +1,6 @@
 {
-	"name": "node-pseudo-i18n",
-	"version": "0.0.3",
+	"name": "node-pseudo-l8n",
+	"version": "0.0.1",
 	"description": "",
 	"keywords": [
 		"i18n",
@@ -9,9 +9,9 @@
 		"localization",
 		"po"
 	],
-	"homepage": "https://github.com/maxnachlinger/node-pseudo-i18n",
+	"homepage": "https://github.com/maxnachlinger/node-pseudo-l8n",
 	"repository": {
-		"url": "https://github.com/maxnachlinger/node-pseudo-i18n.git",
+		"url": "https://github.com/maxnachlinger/node-pseudo-l8n.git",
 		"type": "git"
 	},
 	"main": "index.js",
