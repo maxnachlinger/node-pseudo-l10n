@@ -7,7 +7,7 @@ Turns a PO or POT file into [pseudo-localized](http://en.wikipedia.org/wiki/Pseu
 
 ### Installation:
 ```
-npm install node-pseudo-i18n
+npm install node-pseudo-l8n
 ```
 ### Usage:
 ```javascript
