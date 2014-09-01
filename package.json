@@ -1,5 +1,5 @@
 {
-	"name": "node-pseudo-l8n",
+	"name": "node-pseudo-l10n",
 	"version": "0.0.1",
 	"description": "",
 	"keywords": [
@@ -9,9 +9,9 @@
 		"localization",
 		"po"
 	],
-	"homepage": "https://github.com/maxnachlinger/node-pseudo-l8n",
+	"homepage": "https://github.com/maxnachlinger/node-pseudo-l10n",
 	"repository": {
-		"url": "https://github.com/maxnachlinger/node-pseudo-l8n.git",
+		"url": "https://github.com/maxnachlinger/node-pseudo-l10n.git",
 		"type": "git"
 	},
 	"main": "index.js",
