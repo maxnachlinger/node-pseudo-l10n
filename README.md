@@ -1,4 +1,4 @@
-#node-pseudo-i18n
+#node-pseudo-l8n
 Turns a PO or POT file into [pseudo-localized](http://en.wikipedia.org/wiki/Pseudolocalization) PO file.
 
 [![NPM](https://nodei.co/npm/node-pseudo-l8n.png)](https://nodei.co/npm/node-pseudo-i18n/)
