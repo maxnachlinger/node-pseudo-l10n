@@ -1,42 +1,51 @@
+var fs = require('fs');
+var path = require('path');
 var gettextParser = require('gettext-parser');
 var pseudoLocalizeString = require('./lib/pseudoLocalizeString');
 
 module.exports = function (params, cb) {
-	var fileContents = params.fileContents;
+	var filePath = params.filePath;
 	var headerLanguage = params.headerLanguage || 'test';
 	var charMap = params.charMap;
-	var potFile = params.potFile;
 
 	var locStr = pseudoLocalizeString(charMap);
 
-	var parsed = gettextParser.po.parse(fileContents);
-	parsed.headers['language'] = headerLanguage;
+	var ext = path.extname(filePath).toLowerCase();
+	var parse = gettextParser.po.parse;
+	var compile = gettextParser.po.compile;
 
-	var translations = parsed.translations;
+	if (ext === '.mo') {
+		parse = gettextParser.mo.parse;
+		compile = gettextParser.mo.compile;
+	}
 
-	Object.keys(translations).forEach(function (catalog) {
-		Object.keys(translations[catalog]).forEach(function (key) {
-			if (key.length === 0) return;
+	fs.readFile(filePath, function(err, fileContents) {
+		var parsed = parse(fileContents);
+		parsed.headers['language'] = headerLanguage;
 
-			var strObj = translations[catalog][key];
+		var translations = parsed.translations;
 
-			// PO file
-			if(!potFile) {
-				strObj.msgstr = strObj.msgstr.map(locStr);
-				return;
-			}
+		Object.keys(translations).forEach(function (catalog) {
+			Object.keys(translations[catalog]).forEach(function (key) {
+				if (key.length === 0) return;
 
-			// POT file
-			strObj.msgstr[0] = locStr(strObj.msgid);
-			if (strObj.msgid_plural)
-				strObj.msgstr[1] = locStr(strObj.msgid_plural);
+				var strObj = translations[catalog][key];
+
+				if(~['.mo','.po'].indexOf(ext)) {
+					strObj.msgstr = strObj.msgstr.map(locStr);
+					return;
+				}
+
+				// POT file
+				strObj.msgstr[0] = locStr(strObj.msgid);
+				if (strObj.msgid_plural)
+					strObj.msgstr[1] = locStr(strObj.msgid_plural);
+			});
 		});
+
+		var po = compile(parsed);
+		cb(null, po);
 	});
-
-	var po = gettextParser.po.compile(parsed);
-	if (!cb) return po;
-
-	cb(null, po);
 };
 
 module.exports.transformString = function(s, charMap) {
