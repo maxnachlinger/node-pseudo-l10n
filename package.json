@@ -24,7 +24,7 @@
 	},
 	"license": "ISC",
 	"dependencies": {
-		"gettext-parser": "^0.2.0"
+		"gettext-parser": "^1.2.1"
 	},
 	"devDependencies": {
 		"tape": "^2.12.3",
