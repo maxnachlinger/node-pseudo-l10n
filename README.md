@@ -3,7 +3,7 @@ Turns a PO, MO, or POT file into a [pseudo-localized](http://en.wikipedia.org/wi
 
 [![NPM](https://nodei.co/npm/node-pseudo-l10n.png)](https://nodei.co/npm/node-pseudo-l10n/)
 
-[![Build Status](https://travis-ci.org/maxnachlinger/node-pseudo-l10n.svg?branch=master)](https://travis-ci.org/maxnachlinger/node-pseudo-l10n)
+[![Build Status](https://travis-ci.org/maxnachlinger/node-pseudo-l10n.svg?branch=master)](https://travis-ci.org/maxnachlinger/node-pseudo-l10n) [![Greenkeeper badge](https://badges.greenkeeper.io/maxnachlinger/node-pseudo-l10n.svg)](https://greenkeeper.io/)
 
 ### Installation:
 ```
