@@ -1,53 +1,147 @@
-var fs = require('fs');
-var path = require('path');
-var gettextParser = require('gettext-parser');
-var pseudoLocalizeString = require('./lib/pseudoLocalizeString');
+const fs = require('fs').promises
+const path = require('path')
+const gettextParser = require('gettext-parser')
 
-module.exports = function (params, cb) {
-	var filePath = params.filePath;
-	var headerLanguage = params.headerLanguage || 'test';
-	var charMap = params.charMap;
+const defaultCharMap = {
+  'a': 'ààà',
+  'b': 'ƀ',
+  'c': 'ç',
+  'd': 'ð',
+  'e': 'ééé',
+  'f': 'ƒ',
+  'g': 'ĝ',
+  'h': 'ĥ',
+  'i': 'îîî',
+  'l': 'ļ',
+  'k': 'ķ',
+  'j': 'ĵ',
+  'm': 'ɱ',
+  'n': 'ñ',
+  'o': 'ôôô',
+  'p': 'þ',
+  'q': 'ǫ',
+  'r': 'ŕ',
+  's': 'š',
+  't': 'ţ',
+  'u': 'ûûû',
+  'v': 'ṽ',
+  'w': 'ŵ',
+  'x': 'ẋ',
+  'y': 'ý',
+  'z': 'ž',
+  'A': 'ÀÀÀ',
+  'B': 'Ɓ',
+  'C': 'Ç',
+  'D': 'Ð',
+  'E': 'ÉÉÉ',
+  'F': 'Ƒ',
+  'G': 'Ĝ',
+  'H': 'Ĥ',
+  'I': 'ÎÎÎ',
+  'L': 'Ļ',
+  'K': 'Ķ',
+  'J': 'Ĵ',
+  'M': 'Ṁ',
+  'N': 'Ñ',
+  'O': 'ÔÔÔ',
+  'P': 'Þ',
+  'Q': 'Ǫ',
+  'R': 'Ŕ',
+  'S': 'Š',
+  'T': 'Ţ',
+  'U': 'ÛÛÛ',
+  'V': 'Ṽ',
+  'W': 'Ŵ',
+  'X': 'Ẋ',
+  'Y': 'Ý',
+  'Z': 'Ž'
+}
 
-	var locStr = pseudoLocalizeString(charMap);
-
-	var ext = path.extname(filePath).toLowerCase();
-	var parse = gettextParser.po.parse;
-	var compile = gettextParser.po.compile;
-
-	if (ext === '.mo') {
-		parse = gettextParser.mo.parse;
-		compile = gettextParser.mo.compile;
-	}
-
-	fs.readFile(filePath, function(err, fileContents) {
-		var parsed = parse(fileContents);
-		parsed.headers['language'] = headerLanguage;
-
-		var translations = parsed.translations;
-
-		Object.keys(translations).forEach(function (catalog) {
-			Object.keys(translations[catalog]).forEach(function (key) {
-				if (key.length === 0) return;
-
-				var strObj = translations[catalog][key];
-
-				if(~['.mo','.po'].indexOf(ext)) {
-					strObj.msgstr = strObj.msgstr.map(locStr);
-					return;
-				}
-
-				// POT file
-				strObj.msgstr[0] = locStr(strObj.msgid);
-				if (strObj.msgid_plural)
-					strObj.msgstr[1] = locStr(strObj.msgid_plural);
-			});
-		});
-
-		var po = compile(parsed);
-		cb(null, po);
-	});
+const ignoreMap = {
+  // html
+  '<': (char) => char === '>',
+  // sprintf
+  '%': (char) => ~[' ', ',', ':', ';', '?', '!', '[', '/', '-', '(', '<', '{'].indexOf(char)
 };
 
-module.exports.transformString = function(s, charMap) {
-	return pseudoLocalizeString(charMap)(s);
-};
+// you can override the charMap if you'd like
+const transformString = (charMap, str) => {
+  if (!str || str.length === 0) {
+    return str
+  }
+
+  const localCharMap = charMap || defaultCharMap;
+  let output = ''
+  let char, ignoreFn
+
+  for (var i = 0, c = str.length; i < c; i++) {
+    char = str[i]
+
+    // if we can stop ignoring
+    if (ignoreFn && ignoreFn(char, i)) {
+      ignoreFn = null
+    }
+
+    if (!ignoreFn) {
+      // if we need to start ignoring
+      ignoreFn = ignoreMap[char]
+
+      if (!ignoreFn && localCharMap[char]) {
+        char = localCharMap[char]
+      }
+    }
+
+    output += char
+  }
+
+  return output
+}
+
+const transform = async ({
+                           filePath,
+                           headerLanguage = 'test',
+                           charMap
+                         }) => {
+
+  const locStr = (s) => transformString(charMap, s);
+
+  const ext = path.extname(filePath).toLowerCase()
+
+  const {parse, compile} = ext === '.mo'
+    ? gettextParser.mo
+    : gettextParser.po
+
+  const fileContents = await fs.readFile(filePath)
+
+  const parsed = parse(fileContents)
+  parsed.headers['language'] = headerLanguage
+
+  parsed.translations = Object.keys(parsed.translations).reduce((acc0, catalog) => {
+    acc0[catalog] = Object.keys(parsed.translations[catalog]).reduce((acc1, key) => {
+      acc1[key] = parsed.translations[catalog][key]
+
+      if (!key || key.length === 0) {
+        return acc1
+      }
+
+      if (~['.mo', '.po'].indexOf(ext)) {
+        acc1[key].msgstr = acc1[key].msgstr.map(locStr)
+        return acc1
+      }
+
+      // pot file
+      acc1[key].msgstr[0] = locStr(acc1[key].msgid)
+      if (acc1[key].msgid_plural) {
+        acc1[key].msgstr[1] = locStr(acc1[key].msgid_plural)
+      }
+
+      return acc1
+    }, {})
+
+    return acc0
+  }, {})
+
+  return compile(parsed)
+}
+
+module.exports = {transform, transformString}
