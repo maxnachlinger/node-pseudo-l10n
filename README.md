@@ -1,4 +1,4 @@
-#node-pseudo-l10n
+### node-pseudo-l10n
 Turns a PO, MO, or POT file into a [pseudo-localized](http://en.wikipedia.org/wiki/Pseudolocalization) PO file.
 
 [![NPM](https://nodei.co/npm/node-pseudo-l10n.png)](https://nodei.co/npm/node-pseudo-l10n/)
@@ -11,19 +11,15 @@ npm install node-pseudo-l10n
 ```
 ### Usage:
 ```javascript
-var pseudoLoc = require('node-pseudo-l10n');
+const pseudoLoc = require('node-pseudo-l10n');
 
 // for a single string
 pseudoLoc.transformString('This ends with a string place-holder %s');
 // returns 'Ţĥîîîš éééñðš ŵîîîţĥ ààà šţŕîîîñĝ þļàààçééé-ĥôôôļðéééŕ %s'
 
 // for PO or POT files
-var fs = require('fs');
-
-pseudoLoc({
-    filePath: './someFile.po'
-}, function(err, buffer) {
-    fs.writeFileSync('pseudo.po', buffer);
+const pseudoLocPoFileContents = await pseudoLoc.transform({
+  filePath: './someFile.po'
 });
 ```
 

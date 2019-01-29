@@ -1,33 +1,33 @@
 {
-	"name": "node-pseudo-l10n",
-	"version": "0.0.2",
-	"description": "",
-	"keywords": [
-		"i18n",
-		"pseudo-localization",
-		"internationalization",
-		"localization",
-		"po"
-	],
-	"homepage": "https://github.com/maxnachlinger/node-pseudo-l10n",
-	"repository": {
-		"url": "https://github.com/maxnachlinger/node-pseudo-l10n.git",
-		"type": "git"
-	},
-	"main": "index.js",
-	"scripts": {
-		"test": "tape tests/*.js"
-	},
-	"author": {
-		"name": "Max Nachlinger",
-		"url": "https://github.com/maxnachlinger"
-	},
-	"license": "ISC",
-	"dependencies": {
-		"gettext-parser": "^3.1.0"
-	},
-	"devDependencies": {
-		"tape": "^4.9.2",
-		"node-gettext": "^2.0.0"
-	}
+  "name": "node-pseudo-l10n",
+  "version": "0.0.2",
+  "description": "",
+  "keywords": [
+    "i18n",
+    "pseudo-localization",
+    "internationalization",
+    "localization",
+    "po"
+  ],
+  "homepage": "https://github.com/maxnachlinger/node-pseudo-l10n",
+  "repository": {
+    "url": "https://github.com/maxnachlinger/node-pseudo-l10n.git",
+    "type": "git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": {
+    "name": "Max Nachlinger",
+    "url": "https://github.com/maxnachlinger"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "gettext-parser": "^3.1.0"
+  },
+  "devDependencies": {
+    "jest": "24.0.0",
+    "node-gettext": "^2.0.0"
+  }
 }
