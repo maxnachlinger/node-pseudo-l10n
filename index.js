@@ -62,7 +62,7 @@ const ignoreMap = {
   '<': (char) => char === '>',
   // sprintf
   '%': (char) => ~[' ', ',', ':', ';', '?', '!', '[', '/', '-', '(', '<', '{'].indexOf(char)
-};
+}
 
 // you can override the charMap if you'd like
 const transformString = (charMap, str) => {
@@ -70,15 +70,11 @@ const transformString = (charMap, str) => {
     return str
   }
 
-  const localCharMap = charMap || defaultCharMap;
-  let output = ''
-  let char, ignoreFn
-
-  for (var i = 0, c = str.length; i < c; i++) {
-    char = str[i]
+  const localCharMap = charMap || defaultCharMap
+  const {result} = str.split('').reduce(({ignoreFn, result}, char, idx) => {
 
     // if we can stop ignoring
-    if (ignoreFn && ignoreFn(char, i)) {
+    if (ignoreFn && ignoreFn(char, idx)) {
       ignoreFn = null
     }
 
@@ -91,10 +87,10 @@ const transformString = (charMap, str) => {
       }
     }
 
-    output += char
-  }
-
-  return output
+    result += char
+    return {ignoreFn, result}
+  }, {ignoreFn: null, result: ''})
+  return result
 }
 
 const transform = async ({
@@ -103,7 +99,7 @@ const transform = async ({
                            charMap
                          }) => {
 
-  const locStr = (s) => transformString(charMap, s);
+  const locStr = (s) => transformString(charMap, s)
 
   const ext = path.extname(filePath).toLowerCase()
 
