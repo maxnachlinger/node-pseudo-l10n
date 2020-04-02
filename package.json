@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "jest": "24.0.0",
-    "node-gettext": "^2.0.0"
+    "node-gettext": "^3.0.0"
   }
 }
